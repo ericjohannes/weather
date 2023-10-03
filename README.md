@@ -1,6 +1,6 @@
 This project ingests some weather, puts it into a database, and exposes the data through a REST API.
 
-Note, in the process of deploying to AWS I deleted and recreated the github repo so the commit history here does not reflect my commit process when building this app.
+Note, while exploring AWS deployment options I deleted and recreated the github repo so the commit history here does not reflect my commit process when building this app.
 
 The data is all in the `wx_data` folder. To load the data base run `python manage.py ingest_data` and `python manage.py analyze_data`. After that run `python manage.py runserver` and check out the api at  http://127.0.0.1:8000/api/weather and http://127.0.0.1:8000/api/weather/stats.
 
