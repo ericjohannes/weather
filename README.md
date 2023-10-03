@@ -1,5 +1,7 @@
 This project ingests some weather, puts it into a database, and exposes the data through a REST API.
 
+Note, in the process of deploying to AWS I deleted and recreated the github repo so the commit history here does not reflect my commit process when building this app.
+
 # Questions
 Responses to the several questions for this exercise
 
@@ -23,5 +25,12 @@ I used Django and the Django REST API package for this portion. You can [see the
 
 
 ## Extra Credit - Deployment
+
+Steps to deploy to AWS Apprunner
+1. Created requirements.txt file
+2. Change settings of django app for AWS
+3. Create apprunner.yaml file to configure deployment
+4. Create a startup shell bash file
+5. Create git repo and push to github
 
 My app is [deployed on AWS](myawsthing.com).
