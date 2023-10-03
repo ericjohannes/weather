@@ -32,5 +32,12 @@ Steps to deploy to AWS Apprunner
 3. Create apprunner.yaml file to configure deployment
 4. Create a startup shell bash file
 5. Create git repo and push to github
+6. create and deploy apprunner service
+7. create a postgres database on Amazon RDS
+
+Next steps:
+1. save data files to s3 bucket
+2. have ingest and analyze processes read from s3 bucket
+3. move those processes to lambdas and have them trigger when a new file drops on s3 bucket
 
 My app is [deployed on AWS](myawsthing.com).
