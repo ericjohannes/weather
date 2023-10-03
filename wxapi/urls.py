@@ -29,7 +29,7 @@ urlpatterns = [
         #   * Provide `extra_context` with view name of `SchemaView`.
         path('api/swagger-ui/', TemplateView.as_view(
             template_name='swagger-ui.html',
-            extra_context={'schema_url': 'openapi-schema'}
+            extra_context={'schema_url': 'wxapi:openapi-schema'}
         ), name='swagger-ui'),
 ]
 
