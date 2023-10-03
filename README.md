@@ -2,6 +2,8 @@ This project ingests some weather, puts it into a database, and exposes the data
 
 Note, in the process of deploying to AWS I deleted and recreated the github repo so the commit history here does not reflect my commit process when building this app.
 
+The data is all in the `wx_data` folder. To load the data base run `python manage.py ingest_data` and `python manage.py analyze_data`. After that run `python manage.py runserver` and check out the api at  http://127.0.0.1:8000/api/weather and http://127.0.0.1:8000/api/weather/stats.
+
 # Questions
 Responses to the several questions for this exercise
 
@@ -21,23 +23,28 @@ Responses to the several questions for this exercise
 
 ## Problem 4 - REST API
 
-I used Django and the Django REST API package for this portion. You can [see the api in action](myawsthing.com). The code for it mainly lives in the [views](weather/wxapi/views.py), [urls](weather/wxapi/urls.py), and [serializers](weather/wxapi/serializers.py) files.
+I used Django and the Django REST API package for this portion. The code for it mainly lives in the [views](weather/wxapi/views.py), [urls](weather/wxapi/urls.py), and [serializers](weather/wxapi/serializers.py) files. It will return html if you visit the api with a broswer but returns json if you go to http://127.0.0.1:8000/api/weather.json or http://127.0.0.1:8000/api/weather/stats.json
 
+
+A swagger endpoint is at http://127.0.0.1:8000/api/swagger-ui/ 
 
 ## Extra Credit - Deployment
 
-Steps to deploy to AWS Apprunner
-1. Created requirements.txt file
-2. Change settings of django app for AWS
+What tools and AWS services would you use to deploy the API, database, and a scheduled version of your data ingestion code?
+
+Steps to deploy app:
+1. Create requirements.txt file from virtual environment
+2. Change allow host settings of django app for AWS
 3. Create apprunner.yaml file to configure deployment
 4. Create a startup shell bash file
 5. Create git repo and push to github
-6. create and deploy apprunner service
-7. create a postgres database on Amazon RDS
+6. create and deploy apprunner service that follows main branch on github repo 
+6. create a postgres database on Amazon RDS, create a database in the database, configure a user to use
+7. Add databse secrets to AWS secret manager, create a role with access to those secrets, give the apprunner service that secruity role. Add secrets in apprunner yaml
+8. Add section in settings.py to look for postgres secrets in environment and if they're there make a postgres connection
+9. Push to git and have apprunner automatically redeploy
 
-Next steps:
-1. save data files to s3 bucket
-2. have ingest and analyze processes read from s3 bucket
-3. move those processes to lambdas and have them trigger when a new file drops on s3 bucket
-
-My app is [deployed on AWS](myawsthing.com).
+Steps to ingest data on a schdule:
+1. move data files to s3 bucket 
+2. change ingest and analyze processes to read from s3 bucket
+3. move those processes to lambdas and set up a trigger on a schedule or when a new file drops on s3 bucket  
