@@ -44,7 +44,7 @@ Steps to deploy app:
 8. Add section in settings.py to look for postgres secrets in environment and if they're there make a postgres connection
 9. Push to git and have apprunner automatically redeploy
 
-Steps to ingest data on a schdule:
+Steps to ingest data on a scehdule:
 1. move data files to s3 bucket 
 2. change ingest and analyze processes to read from s3 bucket
 3. move those processes to lambdas and set up a trigger on a schedule or when a new file drops on s3 bucket  
